@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OOps Using App</title>
+<!-- Include Tailwind CSS -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+<div class="container mx-auto py-8">
+  <h2 class="lg:text-2xl text-xl text-center font-bold mb-4">DOM Manipulation</h2>
+  
+  <!-- Create a form -->
+  <div class="bg-white p-4 rounded-lg shadow-lg mb-8">
+    <form id="myForm">
+      <div class="mb-4">
+        <label for="name" class="block text-sm font-medium text-gray-700">Name:</label>
+        <input type="text" id="name" name="name" class="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border rounded-md p-2">
+      </div>
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
+        <input type="email" id="email" name="email" class="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border rounded-md p-2">
+      </div>
+      <div class="flex space-x-4">
+        <button type="button" onclick="submitForm()" class="flex-1 bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Submit</button>
+        <button onclick="clearResults()" class="flex-1 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2">Reset Data</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Display area for results -->
+  <div class="bg-yellow-500 w-full p-4 rounded-lg shadow-lg whitespace-nowrap overflow-hidden overflow-scroll-x">
+    <h3 class="text-lg font-bold mb-4">Results:</h3>
+    <ul id="resultsList" class="font-semibold text-gray-700"></ul>
+  </div>
+</div>
+
+<script>
+// Function to handle form submission
+function submitForm() {
+  // Get form values
+  let name = document.getElementById('name').value;
+  let email = document.getElementById('email').value;
+
+  // Create a new list item
+  let listItem = document.createElement('li');
+  listItem.textContent = `Name: ${name}, Email: ${email}`;
+
+  // Append the new list item to results list
+  let resultsList = document.getElementById('resultsList');
+  resultsList.appendChild(listItem);
+
+  // Clear the form fields
+  document.getElementById('myForm').reset();
+}
+
+// Function to clear results list
+function clearResults() {
+  // Clear form fields
+  document.getElementById('myForm').reset();
+
+  // Clear results list
+  let resultsList = document.getElementById('resultsList');
+  while (resultsList.firstChild) {
+    resultsList.removeChild(resultsList.firstChild);
+  }
+}
+</script>
+
+</body>
+</html>
